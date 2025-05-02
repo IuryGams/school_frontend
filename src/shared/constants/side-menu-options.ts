@@ -1,49 +1,51 @@
-
+import { Home, User } from "lucide-react";
 
 interface SideBarItem {
-    icon: React.ReactNode;
+    icon: React.ElementType;
     label: string;
-    href: string;
+    href?: string;
+    children?: SideBarItem[];
 }
 
 export interface SideMenuSection {
-    id: number;
-    section?: string;
+    section: string;
     items: SideBarItem[];
+
 }
 
 
 
 export const sideMenuOptions: SideMenuSection[] = [
     {
-        id: 1,
-        section: "Alunos",
+        section: "Dashboard",
         items: [
             {
-                icon: "",
-                label: "Registro de Alunos",
-                href: "/students",
+                icon: Home,
+                label: "Inicio",
+                href: "home",
             },
             {
-                icon: "",
-                label: "Cadastrar Aluno",
-                href: "/students/create",
-            },
-        ],
+                icon: User,
+                label: "Alunos",
+                children: [
+                    {
+                        icon: User,
+                        label: "Lista de Alunos",
+                        href: "/students",
+                    },
+                    {
+                        icon: User,
+                        label: "Cadastrar Aluno",
+                        href: "/students/create",
+                    }
+                ]
+            }
+        ]
     },
     {
-        id: 2,
+        section: "Configurações",
         items: [
-            {
-                icon: "",
-                label: "Login",
-                href: "/auth/sign-in",
-            },
-            {
-                icon: "",
-                label: "Cadastro",
-                href: "/auth/sign-up",
-            },
-        ]
-    }
+            
+        ],
+    },
 ];
