@@ -1,18 +1,42 @@
+"use client";
 import { sideMenuOptions } from "@/shared/constants/side-menu-options";
 import ItemMenu from "./item-menu";
-import { StyledSideBar } from "./styled";
+import { StyledSideBar, TriggerSideBar } from "./styled";
 import Image from "next/image";
+import { ChevronLeft } from "lucide-react";
+import { useSideBarContext } from "@/contexts/SidebarContext";
 
 export default function SideBar() {
+
+  const { toggleSideBarOpen, collapsed } = useSideBarContext();
+
   return (
-    <StyledSideBar>
+    <StyledSideBar data-collapsed={collapsed}>
       <header>
-        <Image width={40} height={40} alt="Foto de um rapaz de pele branca, cabelos castanhos e oculos de grau preto" src="https://avatars.githubusercontent.com/u/116408591?v=4" aria-label="Logo do site." />
+        <Image
+          width={40}
+          height={40}
+          alt="Foto de um rapaz de pele branca, cabelos castanhos e oculos de grau preto"
+          src="https://avatars.githubusercontent.com/u/116408591?v=4"
+          aria-label="Logo do site."
+        />
+        <TriggerSideBar
+          type="button"
+          aria-label="Fechar menu lateral"
+          onClick={toggleSideBarOpen}
+          aria-expanded={collapsed}
+        >
+          <ChevronLeft size={16} data-collapsed={collapsed} />
+        </TriggerSideBar>
       </header>
-      <hr/>
-      <nav aria-label="Menu de navegação">
-        {sideMenuOptions.map((option) => ( 
-          <ItemMenu key={option.section} option={option} />
+      <hr />
+      <nav 
+        aria-label="Menu de navegação"
+        role="navigation"
+        data-open={collapsed}  
+      >
+        {sideMenuOptions.map((option) => (
+          <ItemMenu key={option.section} option={option} collapsed={collapsed} />
         ))}
       </nav>
       <footer>

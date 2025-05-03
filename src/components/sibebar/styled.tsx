@@ -1,49 +1,123 @@
-"use client"
+"use client";
 
-import styled from "styled-components"
+import styled, { css } from "styled-components";
 
 export const StyledSideBar = styled.aside`
-    width: 256px; // 92px 256px
-    height: 100dvh;
-    background-color: #fff  ;
-    padding: 24px;
-    position: relative;
+  width: 256px; // 92px 256px
+  height: 100dvh;
+  background-color: #fff;
+  padding: 24px;
+  position: relative;
+  font-size: 16px;
+  transition: width 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 
+  &[data-collapsed="true"] {
+    width: 96px;
+  }
+
+  hr {
+    border-radius: 6px;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+
+    img {
+      border-radius: 50%;
+      object-fit: cover;
+      aspect-ratio: 4 / 3;
+    }
+  }
+
+  nav {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    /* overflow: hidden; */
+    width: 100%;
+    flex: 1;
+    gap: 8px;
 
-    /* div {
-            position: absolute;
-            width: 24px;
-            height: 24px;
-            background-color: black;
-            top: 50%;
-            right: 0;
-            transform: translateY(-50%);
-        } */
-
-    hr {
-        border-radius: 6px;
+    &[data-collapsed="true"] {
+      overflow: visible;
     }
+  }
+`;
 
+export const TriggerSideBar = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  background-color: #fff;
+  border: 1px solid #f2f2f2;
+  border-radius: 8px;
+  cursor: pointer;
+  top: 50%;
+  left: calc(100% + 10px);
+  transform: translateY(-50%);
 
-    header {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
+  svg {
+    transition: transform 0.2s ease;
 
-        img {
-            border-radius: 50%;
-            object-fit: cover;
-            aspect-ratio: 4 / 3;
-        }
+    &[data-collapsed="true"] {
+      transform: rotate(180deg);
     }
+  }
+`;
 
-    nav {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-    }
-`
+export const BaseItemStyle = css`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  font-size: 0.875em;
+  border-radius: 8px;
+  color: #757575;
+  cursor: pointer;
+  width: 100%;
+  font-family: inherit;
+
+  &:hover {
+    background-color: #f2f2f2;
+  }
+`;
+
+export const ToolTip = css`
+  position: absolute;
+  z-index: 1;
+  left: calc(100% + 6px); /* Fora da sidebar */
+  top: 50%;
+  transform: translateY(-50%);
+  background: black;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  font-size: 0.875rem;
+
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 100%;
+    width: 0;
+    height: 0;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-right: 6px solid black;
+  }
+`;

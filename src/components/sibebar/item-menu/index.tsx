@@ -1,53 +1,38 @@
 import { SideMenuSection } from "@/shared/constants/side-menu-options";
-import { DropDown, DropDownContent, DropDownLabel, DropDownMenu, LinkItem, List, StyledItemMenu } from "./styled";
-import { ChevronDown } from "lucide-react";
+import { LinkItem, List, StyledItemMenu, StyledToolTip, Title } from "./styled";
+import DropDownMenuItem from "@/components/sibebar/Dropdown";
 
-export default function ItemMenu({ option }: { option: SideMenuSection }) {
+export default function ItemMenu({
+  option,
+  collapsed,
+}: {
+  option: SideMenuSection;
+  collapsed: boolean;
+}) {
   return (
     <>
       <StyledItemMenu>
-        {option.section && <h3>{option.section}</h3>}
+        {option.section && <Title>{option.section}</Title>}
         <List>
           {option.items.map((item) => {
             const Icon = item.icon;
-            const hasChildren = item.children && item.children.length > 0;
 
             return (
               <li key={item.label}>
                 {item.href ? (
-                  <LinkItem href={item.href}>
+                  <LinkItem data-collapsed={collapsed} href={item.href}>
                     <Icon size={20} />
-                    <span>{item.label}</span>
+                    {!collapsed ? (
+                      <span>{item.label}</span>
+                    ) : (
+                      <StyledToolTip>{item.label}</StyledToolTip>
+                    )}
                   </LinkItem>
                 ) : (
-                  <DropDown>
-                    <DropDownLabel>
-                      <div>
-                        <Icon size={20} />
-                        <span>{item.label}</span>
-                      </div>
-                      {hasChildren && <ChevronDown size={20} />}
-                    </DropDownLabel>
-                    <DropDownContent>
-                      {item.children!.map(child => (
-                        <li key={child.label}>
-                          <LinkItem href={child.href}>
-                            <child.icon size={20} />
-                            <span>{child.label}</span>  
-                          </LinkItem>
-                        </li>
-                      ))}
-                    </DropDownContent>
-
-                  </DropDown>
+                  <DropDownMenuItem item={item} />
                 )}
-
-
-
-
               </li>
-            )
-
+            );
           })}
         </List>
       </StyledItemMenu>

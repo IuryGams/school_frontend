@@ -1,6 +1,7 @@
-import { Home, User } from "lucide-react";
+'use client';
+import { Home, User, BookOpen } from "lucide-react";
 
-interface SideBarItem {
+export interface SideBarItem {
     icon: React.ElementType;
     label: string;
     href?: string;
@@ -13,8 +14,6 @@ export interface SideMenuSection {
 
 }
 
-
-
 export const sideMenuOptions: SideMenuSection[] = [
     {
         section: "Dashboard",
@@ -22,7 +21,7 @@ export const sideMenuOptions: SideMenuSection[] = [
             {
                 icon: Home,
                 label: "Inicio",
-                href: "home",
+                href: "/home",
             },
             {
                 icon: User,
@@ -37,8 +36,23 @@ export const sideMenuOptions: SideMenuSection[] = [
                         icon: User,
                         label: "Cadastrar Aluno",
                         href: "/students/create",
-                    }
+                    },
+                    {
+                        icon: User,
+                        label: "Cadastrar Update",
+                        href: "/students/update",
+                    },
+                    {
+                        icon: User,
+                        label: "Cadastrar excluir",
+                        href: "/students/delete",
+                    },
                 ]
+            },
+            {
+                icon: BookOpen,
+                label: "Professores",
+                href: "/teachers",
             }
         ]
     },
