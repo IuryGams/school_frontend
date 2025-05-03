@@ -36,7 +36,7 @@ export const DropDownLabel = styled.div`
 export const SubMenuItem = styled(LinkItem)`
   ${BaseItemStyle}
   position: relative;
-  width: 100%;
+  width: calc(100% - 32px);
   margin-left: 36px;
   padding-inline: 8px;
   font-size: 0.75em;
@@ -71,6 +71,7 @@ export const SubMenuItem = styled(LinkItem)`
 `;
 
 export const DropDownContent = styled.ul`
+  margin-top: 2px;
   opacity: 0;
   max-height: 0;
   transition: max-height 0.3s ease;
