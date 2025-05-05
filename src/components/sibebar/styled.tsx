@@ -39,7 +39,7 @@ export const StyledSideBar = styled.aside`
   nav {
     display: flex;
     flex-direction: column;
-    /* overflow: hidden; */
+    max-width: calc(256px - 24px);
     width: 100%;
     flex: 1;
     gap: 8px;
@@ -94,8 +94,8 @@ export const BaseItemStyle = css`
 export const ToolTip = css`
   position: absolute;
   z-index: 1;
-  left: calc(100% + 6px); /* Fora da sidebar */
-  top: 50%;
+  left: calc(100% + 6px);
+  top: 30%;
   transform: translateY(-50%);
   background: black;
   color: white;
@@ -104,7 +104,7 @@ export const ToolTip = css`
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.2s;
+  transition: opacity, top 0.2s;
   font-size: 0.875rem;
 
 

@@ -1,5 +1,5 @@
 "use client";
-import { sideMenuOptions } from "@/shared/constants/side-menu-options";
+import { navigationOptions } from "@/shared/constants/navigationMenuOptions";
 import ItemMenu from "./item-menu";
 import { StyledSideBar, TriggerSideBar } from "./styled";
 import Image from "next/image";
@@ -30,14 +30,16 @@ export default function SideBar() {
         </TriggerSideBar>
       </header>
       <hr />
-      <nav 
+      <nav
         aria-label="Menu de navegação"
         role="navigation"
-        data-open={collapsed}  
+        data-collapsed={collapsed}
       >
-        {sideMenuOptions.map((option) => (
-          <ItemMenu key={option.section} option={option} collapsed={collapsed} />
-        ))}
+        <ul className="scroll_area">
+          {navigationOptions.map((item) => (
+            <ItemMenu key={item.label} item={item} collapsed={collapsed} />
+          ))}
+        </ul>
       </nav>
       <footer>
         <h4>Sou um footer</h4>

@@ -1,12 +1,12 @@
 "use client";
 
 import styled from "styled-components";
-import { BaseItemStyle } from "../styled";
-import { LinkItem } from "../item-menu/styled";
+import { BaseItemStyle } from "../../styled"; 
+import { LinkItem } from "../../item-menu/styled";
 
-export const DropDown = styled.div``;
+export const StyledDropdown = styled.div``;
 
-export const DropDownHeader = styled.button`
+export const DropdownHeader = styled.button`
   ${BaseItemStyle}
   background: transparent;
   border: none;
@@ -26,11 +26,15 @@ export const DropDownHeader = styled.button`
   }
 `;
 
-export const DropDownLabel = styled.div`
+export const DropdownLabel = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
   width: 100%;
+
+  &[data-collapsed="true"] {
+    justify-content: center;
+  }
 `;
 
 export const SubMenuItem = styled(LinkItem)`
@@ -70,7 +74,7 @@ export const SubMenuItem = styled(LinkItem)`
   }
 `;
 
-export const DropDownContent = styled.ul`
+export const DropdownList = styled.ul`
   margin-top: 2px;
   opacity: 0;
   max-height: 0;
@@ -87,3 +91,56 @@ export const DropDownContent = styled.ul`
     height: 50%;
   }
 `;
+
+export const FloatingMenu = styled.ul`
+position: absolute;
+  left: 100%;
+  top: 0;
+  min-width: 200px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 8px;
+  list-style: none;
+  z-index: 1000;
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+
+  // Adicione uma setinha
+  &::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 12px;
+    width: 0;
+    height: 0;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-right: 6px solid white;
+  }
+`;
+
+export const FloatingMenuItem = styled(LinkItem)`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  color: #f2f2f2;
+  text-decoration: none;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: #f2f2f2;
+  }
+`;
+
+
+export const StyledToolTipMenu = styled.li`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  
+`

@@ -4,7 +4,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import { BaseItemStyle, ToolTip } from "../styled";
 
-export const StyledItemMenu = styled.div`
+export const StyledItemMenu = styled.li`
   color: black;
 `;
 
