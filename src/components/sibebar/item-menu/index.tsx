@@ -1,7 +1,8 @@
+"use client";
 import { NavItem } from "@/shared/constants/navigationMenuOptions";
 import {  StyledItemMenu } from "./styled";
 import LinkItemMenu from "@/components/LinkItem";
-import Dropdown from "@/components/sibebar/Dropdown";
+import Dropdown from "../Dropdown";
 
 export default function ItemMenu({
   item,
@@ -10,6 +11,7 @@ export default function ItemMenu({
   item: NavItem;
   collapsed: boolean;
 }) {
+
   return (
     <StyledItemMenu>
       {item.type == "link" ? (

@@ -14,8 +14,8 @@ const GlobalStyled = createGlobalStyle`
     }
 
     body {
-        background-color: #5B6677;
-    }
+        background-color: ${({ theme }) => theme.colors.light.background};
+     }
 `
 
 export default GlobalStyled

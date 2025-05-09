@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { BaseItemStyle, ToolTip } from "../styled";
 
 export const StyledItemMenu = styled.li`
-  color: black;
+  color: inherit;
 `;
 
 export const Title = styled.h3`

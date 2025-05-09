@@ -3,11 +3,11 @@
 import styled, { css } from "styled-components";
 
 export const StyledSideBar = styled.aside`
+  grid-area: aside;
   width: 256px; // 92px 256px
   height: 100dvh;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.colors.white};
   padding: 24px;
-  position: relative;
   font-size: 16px;
   transition: width 0.2s ease;
   display: flex;
@@ -43,6 +43,7 @@ export const StyledSideBar = styled.aside`
     width: 100%;
     flex: 1;
     gap: 8px;
+    color: ${({ theme }) => theme.colors.light.textPrimary};
 
     &[data-collapsed="true"] {
       overflow: visible;
@@ -81,7 +82,7 @@ export const BaseItemStyle = css`
   padding: 10px 12px;
   font-size: 0.875em;
   border-radius: 8px;
-  color: #757575;
+  color: inherit;
   cursor: pointer;
   width: 100%;
   font-family: inherit;
@@ -93,12 +94,11 @@ export const BaseItemStyle = css`
 
 export const ToolTip = css`
   position: absolute;
-  z-index: 1;
   left: calc(100% + 6px);
   top: 30%;
   transform: translateY(-50%);
-  background: black;
-  color: white;
+  background: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.white};
   padding: 6px 12px;
   border-radius: 6px;
   white-space: nowrap;

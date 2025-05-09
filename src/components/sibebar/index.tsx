@@ -4,14 +4,14 @@ import ItemMenu from "./item-menu";
 import { StyledSideBar, TriggerSideBar } from "./styled";
 import Image from "next/image";
 import { ChevronLeft } from "lucide-react";
-import { useSideBarContext } from "@/contexts/SidebarContext";
+import { useSideBarContext } from "@/shared/contexts/SidebarContext";
+import UserProfile from "../UserProfile";
 
 export default function SideBar() {
-
   const { toggleSideBarOpen, collapsed } = useSideBarContext();
 
   return (
-    <StyledSideBar data-collapsed={collapsed}>
+    <StyledSideBar as="aside" data-collapsed={collapsed}>
       <header>
         <Image
           width={40}
@@ -41,10 +41,8 @@ export default function SideBar() {
           ))}
         </ul>
       </nav>
-      <footer>
-        <h4>Sou um footer</h4>
-        {/* <UserProfile /> */}
-      </footer>
+      <hr />
+      <UserProfile />
     </StyledSideBar>
   );
 }
