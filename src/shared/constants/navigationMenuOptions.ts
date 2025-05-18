@@ -25,7 +25,7 @@ export const navigationOptions: NavItem[] = [
         type: "link",
         label: "Inicio",
         icon: Home,
-        href: "/home"
+        href: "/overview"
     },
     {
         type: 'dropdown',

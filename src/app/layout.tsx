@@ -1,4 +1,4 @@
-import GlobalStyled from "@/shared/GlobalStyles/global_styled";
+import GlobalStyled from "@/styles/global_styled";
 import StyledComponentsRegistry from "@/shared/lib/registry_styled";
 import ThemeProviderApp from "@/shared/providers/ThemeProvider";
 import type { Metadata } from "next";

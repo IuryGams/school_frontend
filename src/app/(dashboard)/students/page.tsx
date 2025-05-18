@@ -1,9 +1,9 @@
 
 
-export default function StudentsPage() {
-
+export default function StudentPage() {
     return (
-        <h1>Sou a pagina dos estudantes</h1>
+        <div>
+            
+        </div>
     )
-
 }
