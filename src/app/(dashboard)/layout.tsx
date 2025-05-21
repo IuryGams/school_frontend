@@ -31,11 +31,11 @@ export default function DashboardLayout({children}: DashboardLayoutProps) {
           <SideBar />
           <Header />
             {children}
-          <footer className="layout_footer">
+          {/* <footer className="layout_footer">
             <span>Terms of use</span>
             <span>Privacy Policy</span>
             <span>Copyright &copy; Colégio Manuelito</span>
-          </footer>
+          </footer> */}
         </S.Layout>
     </Providers>
   );

@@ -5,12 +5,13 @@ export const Layout = styled.div`
   ${({ theme }) => css`
     display: grid;
     height: 100%;
+    max-height: 100dvh;
     grid-template-columns: auto 1fr;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: 64px 1fr;
     grid-template-areas:
       "aside header"
-      "aside content"
-      "aside footer";
+      "aside content";
+      /* "aside footer"; */
 
     & .layout_footer {
       grid-area: footer;

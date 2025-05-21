@@ -19,13 +19,10 @@ const GlobalStyled = createGlobalStyle`
 
     body {
         ${({ theme }) => css`
-          background-color: ${theme.colors.light.background};
+          background-color: #F3F4FF; // ${theme.colors.light.background};
+          min-height: 100dvh;
         `}
      }
-
-    html, body {
-      height: 100%;
-    }
 `;
 
 export default GlobalStyled;

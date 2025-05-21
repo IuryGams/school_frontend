@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { forwardRef, useEffect, useRef } from "react";
 import * as S from "./styled";
 
 interface DialogRootProps {
@@ -8,39 +8,71 @@ interface DialogRootProps {
   children: React.ReactNode;
 }
 
-export default function DialogRoot({
-  children,
-  isOpen,
-  onClose,
-}: DialogRootProps) {
-  const dialogRef = useRef<HTMLDialogElement>(null);
+const DialogRoot = forwardRef<HTMLDialogElement, DialogRootProps>(
+  ({ isOpen, onClose, children }, ref) => {
+    const dialogRef = useRef<HTMLDialogElement>(null);
+    const contentRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog) return;
+    console.log("Fui renderizado!");
 
-    if (isOpen && !dialog.open) {
-      dialog.showModal();
-    } else if (!isOpen && dialog.open) {
-      dialog.close();
-    }
+    const combineRefs = (node: HTMLDialogElement) => {
+      if (typeof ref === "function") {
+        ref(node);
+      } else if (ref) {
+        ref.current = node;
+      }
+      dialogRef.current = node;
+    };
 
-    const handleCancel = () => onClose();
-    dialog.addEventListener("cancel", handleCancel);
-    return () => dialog.removeEventListener("cancel", handleCancel);
-  }, [isOpen, onClose]);
+    useEffect(() => {
+      const dialog = dialogRef.current;
+      if (!dialog) return;
 
-  // Fechar ao clicar fora (no backdrop)
-  const handleBackdropClick = (e: React.MouseEvent<HTMLDialogElement>) => {
-    const dialog = dialogRef.current;
-    if (dialog && e.target === dialog) {
-      onClose();
-    }
-  };
+      if (isOpen && !dialog.open) {
+        dialog.showModal();
+      } else if (!isOpen && dialog.open) {
+        dialog.close();
+      }
+    }, [isOpen]);
 
-  return (
-    <S.Overlay as="dialog" ref={dialogRef} onClick={handleBackdropClick}>
-      {children}
-    </S.Overlay>
-  );
-}
+    useEffect(() => {
+      const dialog = dialogRef.current;
+      if (!dialog) return;
+
+      const handleCancel = () =>  onClose();
+      const handleClose = () =>  onClose();
+
+      dialog.addEventListener("cancel", handleCancel);
+      dialog.addEventListener("close", handleClose);
+
+      return () => {
+        dialog.removeEventListener("cancel", handleCancel);
+        dialog.removeEventListener("close", handleClose);
+      };
+    }, [onClose]);
+
+    const handleBackdropClick = (e: React.MouseEvent<HTMLDialogElement>) => {
+      if (
+        dialogRef.current &&
+        contentRef.current &&
+        !contentRef.current.contains(e.target as Node)
+      ) {
+        onClose();
+      }
+    };
+
+    return (
+      <S.Dialog
+        ref={combineRefs}
+        onClick={handleBackdropClick}
+        onClose={onClose}
+      >
+        <S.Container ref={contentRef}>{children}</S.Container>
+      </S.Dialog>
+    );
+  }
+);
+
+DialogRoot.displayName = "DialogRoot";
+
+export default DialogRoot;

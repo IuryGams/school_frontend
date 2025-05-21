@@ -1,15 +1,14 @@
 "use client";
+import { BaseMain } from "@/styles/pages/generic.styled";
 import styled from "styled-components";
-import { BaseMain } from "./generic.styled";
 
 export const TeacherMainContent = styled(BaseMain)`
   display: flex;
   flex-direction: column;
   background-color: white;
-  gap: 1rem; 
+  gap: 1rem;
   padding: 0.75rem;
   border-radius: 1rem;
-  height: fit-content;
 `;
 
 export const HeaderTeacher = styled.div`
@@ -139,13 +138,32 @@ export const ButtonBox = styled.div`
   }
 `;
 
-
-
 // Table ---------------------------------
+
+export const EmptyData = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: gray;
+  font-weight: bold;
+  padding-block: 3rem;
+`;
+
+export const ContainerTable = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+  padding: 0.875rem;
+  border-radius: 1rem;
+  padding-inline: 0.875rem;
+  background-color: white;
+  overflow-x: auto;
+`;
 
 export const Table = styled.table`
   width: 100%;
-  height: 100%;
+  height: fit-content;
   border-collapse: collapse;
   padding: 2rem;
 
@@ -163,7 +181,7 @@ export const Table = styled.table`
     text-align: center;
     font-size: 0.875rem;
 
-    tr:nth-child(2n) {
+    & tr:nth-child(2n) {
       background-color: #f8fafc;
     }
 
@@ -258,15 +276,12 @@ export const Pagination = styled.div`
     gap: 0.5rem;
 
     & > button {
-
     }
   }
-
 
   & > button {
     display: flex;
     align-items: center;
     gap: 8px;
   }
-`
-
+`;

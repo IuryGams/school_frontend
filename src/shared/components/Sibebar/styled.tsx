@@ -7,12 +7,12 @@ export const StyledSideBar = styled.aside`
   width: 256px; // 92px 256px
   height: 100dvh;
   background-color: ${({ theme }) => theme.colors.white};
-  padding: 1.5rem;
+  padding: 0.75rem  1.5rem;
   font-size: 16px;
   transition: width 0.2s ease;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 0.75rem;
 
   &[data-collapsed="true"] {
     width: 92px;

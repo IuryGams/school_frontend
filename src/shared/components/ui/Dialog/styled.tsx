@@ -2,18 +2,17 @@
 
 import styled, { css } from "styled-components";
 
-export const Overlay = styled.dialog`
+export const Dialog = styled.dialog`
   ${({ theme }) => css`
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
+  
     z-index: ${theme.layers.overlay};
 
     width: clamp(500px, 50dvw, 1200px);
     background-color: white;
-    padding-bottom: 1rem;
     overflow: hidden;
     border-radius: 1rem;
     border: none;
@@ -29,6 +28,11 @@ export const Overlay = styled.dialog`
     }
   `}
 `;
+
+export const Container = styled.div`
+  padding-bottom: 1rem;
+  height: 100%;
+`
 
 
 export const DialogHeader = styled.header`

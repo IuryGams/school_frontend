@@ -1,14 +1,13 @@
 import { X } from "lucide-react";
 import * as S from "./styled";
+import React from "react";
 
 interface DialogHeaderProps {
     title: string;
     onClose: () => void;
 }
 
-export default function DialogHeader({title, onClose}: DialogHeaderProps) {
-
-
+function DialogHeader({title, onClose}: DialogHeaderProps) {
     return (
         <S.DialogHeader>
             <h2>{title}</h2>
@@ -18,3 +17,5 @@ export default function DialogHeader({title, onClose}: DialogHeaderProps) {
         </S.DialogHeader>
     )   
 }
+
+export default React.memo(DialogHeader);
